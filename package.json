@@ -1,0 +1,11 @@
+{
+  "name": "arquitectura-cicd-demo",
+  "version": "1.0.0",
+  "description": "Demostracion practica de CI/CD para Arquitectura de Software",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "lint": "node --check src/app.js && node --check src/server.js",
+    "test": "node --test tests/app.test.js"
+  }
+}
