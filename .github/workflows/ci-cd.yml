@@ -95,7 +95,7 @@ jobs:
     steps:
       - name: Disparar Despliegue a Render/Railway vía Webhook (Verton)
         env:
-          WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL || secrets.RENDER_DEPLOY_HOOK }}
+          WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL || secrets.RENDER_DEPLOY_HOOK || secrets.RENDER_HOOK }}
         run: |
           if [ -n "$WEBHOOK_URL" ]; then
             curl -fsS -X POST "$WEBHOOK_URL"
@@ -106,7 +106,7 @@ jobs:
 
       - name: Verificación de Salud (/health) y Protección de Rollback (Miriam)
         env:
-          APP_URL: ${{ secrets.PUBLIC_APP_URL || vars.APP_URL }}
+          APP_URL: ${{ secrets.PUBLIC_APP_URL || vars.APP_URL || 'https://arquitectura-cicd-demo.onrender.com' }}
         run: |
           echo "Iniciando verificación de salud post-despliegue en /health..."
           if [ -n "$APP_URL" ]; then
